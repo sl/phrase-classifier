@@ -8,7 +8,7 @@ R-CNN works by attempting to guess which "regions" contain the most information 
 
 This phrase classifier intends to process text in a similar manner. It will first use the standard NLP technique of "chunking" to find the different phrase components of the text. It will then create n-grams of these prase chunks up to a specified size.
 
-With these phrase n-grams, we'll then use a supervised learning based classifer (or possibly some other heuristic for scoring, tbg) to score each n-gram based on its usefullness. Finally, a dynamic programming algorithm will be used to determine the highest scoring sequence of n-grams that contains each word exactly once. This highest scoring selection of n-grams will be the chunks we use for sentiment analysis.
+With these phrase n-grams, we'll then use a supervised learning based classifer (or possibly some other heuristic for scoring, tbd) to score each n-gram based on its usefullness. Finally, a directed acyclic graph will be built out of the n-grams with weights for edges being the assigend score for the n-gram. Topological sort can then be used to determine the highest scoring sequence of n-grams that contains each word exactly once. This highest scoring selection of n-grams will be the chunks we use for sentiment analysis.
 
 Finally, we run an existing sentiment analyser on the chosen set of n-grams.
 
