@@ -3,6 +3,10 @@
 .AppleDouble
 .LSOverride
 
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
 # Icon must end with two \r
 Icon
 
