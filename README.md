@@ -1,2 +1,2 @@
 # phrase-classifier
-A crnn like system for segmenting sentences by sentiment.
+An r-cnn like system for segmenting sentences by sentiment.
