@@ -24,19 +24,41 @@ This sentence is chosen for an example as it contains a variety of different sen
 
 ### N-gram creation with n of 2 (2 is chosen for simplicity, likely would be larger)
 
-    [("Despite a", [0]), ("recent downturn", [1]), ("in", [2]), ("sales", [3]), ("in about a year", [4]), ("our company", [5]), ("will release a", [6]), ("brand new feature", [7]), ("which", [8]), ("we", [9]), ("expect to boost", [10]), ("total revenue", [11]), ("Despite a recent downturn", [0, 1]), ("recent downturn in", [1, 2]), ("in sales", [2, 3]), ("sales in about a year", [3, 4]), ("in about a year our company", [4, 5]), ("our company will release a", [5, 6]), ("will release a brand new feature", [6, 7]), ("brand new feature which", [7, 8]), ("which we", [8, 9]), ("we expect to boost", [9, 10]), ("expect to boost total revenue", [10, 11])]
+    [("Despite a", [0]), ("recent downturn", [1]), ("in", [2]), ("sales", [3]),
+     ("in about a year", [4]), ("our company", [5]), ("will release a", [6]),
+     ("brand new feature", [7]), ("which", [8]), ("we", [9]),
+     ("expect to boost", [10]), ("total revenue", [11]),
+     ("Despite a recent downturn", [0, 1]), ("recent downturn in", [1, 2]),
+     ("in sales", [2, 3]), ("sales in about a year", [3, 4]),
+     ("in about a year our company", [4, 5]), ("our company will release a", [5, 6]),
+     ("will release a brand new feature", [6, 7]), ("brand new feature which", [7, 8]),
+     ("which we", [8, 9]), ("we expect to boost", [9, 10]), ("expect to boost total revenue", [10, 11])]
 
 ### N-gram scoring (these scores are a very rough guess)
 
-    [("Despite a", [0], 0.05), ("recent downturn", [1], 0.1), ("in", [2], 0.01), ("sales", [3], 0.07), ("in about a year", [4], 0.2), ("our company", [5], 0.12), ("will release a", [6], 0.13), ("brand new feature", [7], 0.6), ("which", [8], 0.1), ("we", [9], 0.01), ("expect to boost", [10], 0.68), ("total revenue", [11], 0.3), ("Despite a recent downturn", [0, 1], 0.83), ("recent downturn in", [1, 2], 0.3), ("in sales", [2, 3], 0.1), ("sales in about a year", [3, 4], 0.4), ("in about a year our company", [4, 5], 0.4), ("our company will release a", [5, 6], 0.3), ("will release a brand new feature", [6, 7], 0.81), ("brand new feature which", [7, 8], 0.5), ("which we", [8, 9], 0.3), ("we expect to boost", [9, 10], 0.62), ("expect to boost total revenue", [10, 11], 0.79)]
+    [("Despite a", [0], 0.05), ("recent downturn", [1], 0.1), ("in", [2], 0.01),
+     ("sales", [3], 0.07), ("in about a year", [4], 0.2), ("our company", [5], 0.12),
+     ("will release a", [6], 0.13), ("brand new feature", [7], 0.6), ("which", [8], 0.1),
+     ("we", [9], 0.01), ("expect to boost", [10], 0.68), ("total revenue", [11], 0.3),
+     ("Despite a recent downturn", [0, 1], 0.83), ("recent downturn in", [1, 2], 0.3),
+     ("in sales", [2, 3], 0.1), ("sales in about a year", [3, 4], 0.4),
+     ("in about a year our company", [4, 5], 0.4), ("our company will release a", [5, 6], 0.3),
+     ("will release a brand new feature", [6, 7], 0.81), ("brand new feature which", [7, 8], 0.5),
+     ("which we", [8, 9], 0.3), ("we expect to boost", [9, 10], 0.62),
+     ("expect to boost total revenue", [10, 11], 0.79)]
 
 ### Highest Value Full sentence Selection (agian, just a guess)
 
-    [("Despite a recent downturn", [0, 1], 0.83), ("in sales", [2, 3], 0.1), ("in about a year our company", [4, 5], 0.4), ("will release a brand new feature", [6, 7], 0.81),("which we", [8, 9], 0.3), ("expect to boost total revenue", [10, 11], 0.79)]
+    [("Despite a recent downturn", [0, 1], 0.83), ("in sales", [2, 3], 0.1),
+     ("in about a year our company", [4, 5], 0.4), ("will release a brand new feature", [6, 7], 0.81),
+     ("which we", [8, 9], 0.3), ("expect to boost total revenue", [10, 11], 0.79)]
 
 ### Sentiment analysis (again, just a guess)
 
-    [("Despite a recent downturn", ("Negative", 0.11)), ("in sales", ("Neutral, 0.5)), ("in about a year our company", ("Positive", 0.76)), ("will release a brand new feature", ("Positive", 0.54)), ("which we", ("Neutral", 0.41)), ("expect to boost total revenue", ("Positive", 89.23))]
+    [("Despite a recent downturn", ("Negative", 0.11)), ("in sales", ("Neutral, 0.5)),
+     ("in about a year our company", ("Positive", 0.76)),
+     ("will release a brand new feature", ("Positive", 0.54)), ("which we", ("Neutral", 0.41)),
+     ("expect to boost total revenue", ("Positive", 89.23))]
 
 
 
