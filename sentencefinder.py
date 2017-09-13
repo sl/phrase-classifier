@@ -40,6 +40,29 @@ def construct_graph_from_grams(grams):
     return adj_list
 
 
+# Itterative implementation of DFS topological sort using negative numbers
+# to represent post processing steps on the work stack.
+def topological_sort(graph):
+    stack = []
+    ordered = []
+    visited = [False] * len(graph)
+    for i in range(0, len(graph)):
+        if not visited[i]:
+            visited[i] = True
+            stack.append(i)
+            while stack:
+                v = stack.pop()
+                if v >= 0:
+                    stack.append(-v - 1)
+                    for (connected, _, _) in graph[v]:
+                        if not visited[connected]:
+                            visited[connected] = True
+                            stack.append(connected)
+                else:
+                    ordered.append(-v - 1)
+    return list(reversed(ordered))
+
+
 class TestConstructGraphFromNGrams(unittest.TestCase):
 
     def test_sample(self):
@@ -61,6 +84,19 @@ class TestConstructGraphFromNGrams(unittest.TestCase):
             []
         ]
         self.failUnlessEqual(expected, construct_graph_from_grams(test_grams))
+
+    def test_topological_sort(self):
+        graph = [
+            [(1, 2, ('a', [0], 2)), (4, 3, ('ab', [0, 1], 3))],
+            [(2, 2, ('b', [1], 2)), (5, 4, ('bc', [1, 2], 4))],
+            [(3, 1, ('c', [2], 1))],
+            [(6, 0, None)],
+            [(3, 1, ('c', [2], 1))],
+            [(6, 0, None)],
+            []
+        ]
+        expected = [0, 1, 2, 5, 4, 3, 6]
+        self.failUnlessEqual(expected, topological_sort(graph))
 
 
 if __name__ == '__main__':
