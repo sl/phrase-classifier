@@ -12,7 +12,7 @@ def construct_graph_from_grams(grams):
     # grams and the adjacency list
     line_up = [None] + grams
 
-    adj_list = [[] for i in range(len(grams) + 2)]
+    adj_list = [([], []) for i in range(len(grams) + 2)]
 
     highest_end = -1
     end_map = {}
@@ -32,10 +32,12 @@ def construct_graph_from_grams(grams):
         (gram, indexes, score) = line_up[i]
 
         for connection in end_map[indexes[0] - 1]:
-            adj_list[connection].append((i, score, line_up[i]))
+            adj_list[connection][0].append((i, score, line_up[i]))
+            adj_list[i][1].append(connection)
 
     for endConnection in end_map[highest_end]:
-        adj_list[endConnection].append((len(line_up), 0, None))
+        adj_list[endConnection][0].append((len(line_up), 0, None))
+        adj_list[len(adj_list) - 1][1].append(endConnection)
 
     return adj_list
 
@@ -54,7 +56,7 @@ def topological_sort(graph):
                 v = stack.pop()
                 if v >= 0:
                     stack.append(-v - 1)
-                    for (connected, _, _) in graph[v]:
+                    for (connected, _, _) in graph[v][0]:
                         if not visited[connected]:
                             visited[connected] = True
                             stack.append(connected)
@@ -75,25 +77,25 @@ class TestConstructGraphFromNGrams(unittest.TestCase):
         ]
 
         expected = [
-            [(1, 2, ('a', [0], 2)), (4, 3, ('ab', [0, 1], 3))],
-            [(2, 2, ('b', [1], 2)), (5, 4, ('bc', [1, 2], 4))],
-            [(3, 1, ('c', [2], 1))],
-            [(6, 0, None)],
-            [(3, 1, ('c', [2], 1))],
-            [(6, 0, None)],
-            []
+            ([(1, 2, ('a', [0], 2)), (4, 3, ('ab', [0, 1], 3))], []),
+            ([(2, 2, ('b', [1], 2)), (5, 4, ('bc', [1, 2], 4))], [0]),
+            ([(3, 1, ('c', [2], 1))], [1]),
+            ([(6, 0, None)], [2, 4]),
+            ([(3, 1, ('c', [2], 1))], [0]),
+            ([(6, 0, None)], [1]),
+            ([], [3, 5])
         ]
         self.assertEqual(expected, construct_graph_from_grams(test_grams))
 
     def test_topological_sort(self):
         graph = [
-            [(1, 2, ('a', [0], 2)), (4, 3, ('ab', [0, 1], 3))],
-            [(2, 2, ('b', [1], 2)), (5, 4, ('bc', [1, 2], 4))],
-            [(3, 1, ('c', [2], 1))],
-            [(6, 0, None)],
-            [(3, 1, ('c', [2], 1))],
-            [(6, 0, None)],
-            []
+            ([(1, 2, ('a', [0], 2)), (4, 3, ('ab', [0, 1], 3))], []),
+            ([(2, 2, ('b', [1], 2)), (5, 4, ('bc', [1, 2], 4))], [0]),
+            ([(3, 1, ('c', [2], 1))], [1]),
+            ([(6, 0, None)], [2, 4]),
+            ([(3, 1, ('c', [2], 1))], [0]),
+            ([(6, 0, None)], [1]),
+            ([], [3, 5])
         ]
         expected = [0, 1, 2, 5, 4, 3, 6]
         self.assertEqual(expected, topological_sort(graph))
