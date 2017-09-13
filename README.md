@@ -1,5 +1,5 @@
 # phrase-classifier
-An r-cnn like system for segmenting sentences by sentiment.
+An R-CNN like system for segmenting sentences by sentiment.
 
 ## Specification
 
