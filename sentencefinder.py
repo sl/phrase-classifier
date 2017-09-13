@@ -83,7 +83,7 @@ class TestConstructGraphFromNGrams(unittest.TestCase):
             [(6, 0, None)],
             []
         ]
-        self.failUnlessEqual(expected, construct_graph_from_grams(test_grams))
+        self.assertEqual(expected, construct_graph_from_grams(test_grams))
 
     def test_topological_sort(self):
         graph = [
@@ -96,7 +96,7 @@ class TestConstructGraphFromNGrams(unittest.TestCase):
             []
         ]
         expected = [0, 1, 2, 5, 4, 3, 6]
-        self.failUnlessEqual(expected, topological_sort(graph))
+        self.assertEqual(expected, topological_sort(graph))
 
 
 if __name__ == '__main__':

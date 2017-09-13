@@ -23,7 +23,7 @@ def format_ngram(ngram):
 def ngrams(l, n):
     indices = [l[x:] for x in range(n)]
     ngrams = zip(*(indices + [[list(range(i, i + n)) for i in range(len(l))]]))
-    return map(format_ngram, ngrams)
+    return list(map(format_ngram, ngrams))
 
 
 class TestNGrams(unittest.TestCase):
@@ -31,7 +31,7 @@ class TestNGrams(unittest.TestCase):
     def test_format_ngram(self):
         test_gram = ('a', 'b', 'c', 'd', [1, 2, 3])
         expected = (['a', 'b', 'c', 'd'], [1, 2, 3])
-        self.failUnlessEqual(expected, format_ngram(test_gram))
+        self.assertEqual(expected, format_ngram(test_gram))
 
     def test_ngrams(self):
         test_list = ['a', 'b', 'c', 'd', 'e']
@@ -40,7 +40,7 @@ class TestNGrams(unittest.TestCase):
             (['b', 'c', 'd'], [1, 2, 3]),
             (['c', 'd', 'e'], [2, 3, 4])
         ]
-        self.failUnlessEqual(expected, ngrams(test_list, 3))
+        self.assertEqual(expected, ngrams(test_list, 3))
 
     def test_all_grams(self):
         test_list = ['a', 'b', 'c']
@@ -51,7 +51,7 @@ class TestNGrams(unittest.TestCase):
             (['a', 'b'], [0, 1]),
             (['b', 'c'], [1, 2])
         ]
-        self.failUnlessEqual(expected, all_grams(test_list, 2))
+        self.assertEqual(expected, all_grams(test_list, 2))
 
 
 if __name__ == '__main__':
