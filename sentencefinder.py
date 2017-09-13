@@ -40,7 +40,7 @@ def construct_graph_from_grams(grams):
     return adj_list
 
 
-class ConstructGraphFromNGramsTests(unittest.TestCase):
+class TestConstructGraphFromNGrams(unittest.TestCase):
 
     def test_sample(self):
         test_grams = [
