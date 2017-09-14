@@ -51,6 +51,7 @@ validation = chunking_corpus[int(len(chunking_corpus) * 0.8 + 1):]
 trigram_chunker = TrigramChunker(training)
 
 # Evaluate and print out the acuracy of the trained chunker
+# todo -- remove this for production builds
 print(trigram_chunker.evaluate(validation))
 
 
