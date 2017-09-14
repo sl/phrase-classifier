@@ -18,6 +18,7 @@ sample_phrases = [
     "expect to boost",
     "total revenue"
 ]
+
 grams = ngrams.all_grams(sample_phrases, 4)
 scored_grams = phrasescoring.score_grams(grams)
 best_grams = sentencefinder.best_full_gram_subset(scored_grams)
